@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Sidebar @add-task="addTask"/>
+  <Header :counter="tasks.length"/>
+  <TaskList :tasks="tasks"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
+import TaskList from "./components/TaskList.vue";
+import Sidebar from "./components/Sidebar.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    TaskList,
+    Sidebar,
+  },
+  data() {
+    return {
+      tasks: [],
+      timers: [],
+      completedTasks: [],
+    }
+  },
+  methods: {
+    addTask(task) {
+      this.tasks = [...this.tasks, task];
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+  body {
+    background-color: #262421;
+    color: rgb(200,200,200);
+    font-family: 'Poppins', sans-serif;
 }
 </style>
